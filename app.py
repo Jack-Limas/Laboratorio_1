@@ -175,14 +175,14 @@ if "1. Precio del Dólar" in opcion_escenario:
             c1, c2, c3 = st.columns(3)
 
             with c1:
-                dia_default = int(stats.get('mean', {}).get('Dia', 15))
-                val_dia = st.number_input("Día del mes (1 - 31)", min_value=1, max_value=31, value=dia_default, step=1)
+                dia_default = int(stats.get('mean', {}).get('Dia', 250))
+                val_dia = st.number_input("Día de la Serie / Período (1 a 1000)", min_value=1, max_value=1000, value=dia_default, step=1)
             with c2:
-                inf_default = float(stats.get('mean', {}).get('Inflacion', 0.025))
-                val_inflacion = st.number_input("Inflación mensual (Ej: 0.02 = 2%)", min_value=-0.1, max_value=0.5, value=inf_default, format="%.5f", step=0.001)
+                inf_default = float(stats.get('mean', {}).get('Inflacion', 0.020))
+                val_inflacion = st.number_input("Inflación mensual (Ej: 0.02 = 2%)", min_value=-0.1, max_value=1.0, value=inf_default, format="%.5f", step=0.001)
             with c3:
                 tasa_default = float(stats.get('mean', {}).get('Tasa_interes', 5.0))
-                val_tasa = st.number_input("Tasa de interés (%) (Ej: 5.5)", min_value=0.0, max_value=30.0, value=tasa_default, format="%.3f", step=0.1)
+                val_tasa = st.number_input("Tasa de interés (%) (Ej: 5.0%)", min_value=0.0, max_value=50.0, value=tasa_default, format="%.3f", step=0.1)
 
             if st.button("🚀 Calcular Predicción del Dólar", key="btn_dolar", use_container_width=True):
                 x_input = np.array([[val_dia, val_inflacion, val_tasa]])
@@ -390,7 +390,7 @@ elif "3. Consumo de Energía" in opcion_escenario:
                 val_temp = st.number_input("Temperatura (°C)", min_value=-15.0, max_value=55.0, value=temp_default, format="%.2f", step=0.5)
             with c2:
                 hora_default = int(stats.get('mean', {}).get('Hora', 12))
-                val_hora = st.slider("Hora del Día (0 a 23 hrs)", min_value=0, max_value=23, value=hora_default)
+                val_hora = st.slider("Hora del Día (1 a 24 hrs)", min_value=1, max_value=24, value=hora_default)
             with c3:
                 dia_default = int(stats.get('mean', {}).get('Dia_Semana', 3))
                 val_diasem = st.selectbox(
